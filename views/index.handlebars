@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Burgers</h1>
+    {{#each burgers}}
+    <div class="row top-buffer">
+        <div class="col-xs-3">
+            {{burger_name}}
+        </div>
+        <div class="col-xs-3">
+            {{~#if eaten}} Eaten {{~^~}} Not Eaten {{~/if~}}
+        </div>
+        <div class="col-xs-3">
+            <form method="POST" action="/burgers/update?_method=PUT">
+                <input type="hidden" type="text" name="id" value={{this.id}}>
+                <button type="submit" class="btn btn-success">Eat it!</button>
+            </form>
+        </div>
+        <div class="col-xs-3">
+            <form method="POST" action="/burgers/delete?_method=DELETE">
+                <input type="hidden" type="text" name="id" value={{this.id}}>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+
+    <hr>
+
+    <h2>Add a burger</h2>
+
+    <form action="/burgers/create" method="POST">
+        <div class="form-group">
+            <label for="name">Burger Name:</label>
+            <input class="form-control" type="text" id="name" name="name">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
